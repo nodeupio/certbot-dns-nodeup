@@ -31,11 +31,11 @@ class Authenticator(dns_common.DNSAuthenticator):
         return 'This plugin configures a DNS TXT record to respond to a dns-01 challenge using the Nodeup API.'
 
     def _setup_credentials(self):
-        self.credentials = self._configure_credentials('credentials', 'Nodeup credentials INI file', {'key': 'Must be written into nodeup.ini file and ini file given as a commandline parameter.'})
+        self.credentials = self._configure_credentials('credentials', 'Nodeup credentials INI file', {'api_token': 'Must be written into nodeup.ini file and ini file given as a commandline parameter.'})
 
     def _perform(self, domain, validation_name, letsencrypt_txt_value):
         print('Nodeup: adding temporary TXT record for '+ repr((domain, letsencrypt_txt_value)))
-        self.nodeup_dns_client = NodeupDNSClient(domain, nodeup_api_key=self.credentials.conf('key'))
+        self.nodeup_dns_client = NodeupDNSClient(domain, nodeup_api_token=self.credentials.conf('api_token'))
         self.nodeup_dns_client.addDnsRecord(letsencrypt_txt_value)
 
     def _cleanup(self, domain, validation_name, letsencrypt_txt_value):
@@ -48,8 +48,8 @@ class NodeupDNSClient:
     """
     Nodeup methods for LetsEncrypt DNS TXT validation.
     """
-    def __init__(self, domain_name, nodeup_api_key):
-        self.nodeup_api_key = nodeup_api_key
+    def __init__(self, domain_name, nodeup_api_token):
+        self.nodeup_api_token = nodeup_api_token
         self.domain_name = domain_name
         self.basedomain_name = ".".join(domain_name.split('.')[-2:])
         if len(domain_name.split('.')) >= 3:
@@ -60,7 +60,7 @@ class NodeupDNSClient:
 
     def client(self):
         QLClient = GraphQLClient('https://api.nodeup.io/graphql')
-        QLClient.inject_token('Token '+self.nodeup_api_key)
+        QLClient.inject_token('Token '+self.nodeup_api_token)
         return QLClient
   
     def getDomainID(self):
