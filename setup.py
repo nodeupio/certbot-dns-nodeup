@@ -6,7 +6,7 @@ from setuptools import __version__ as setuptools_version
 from setuptools import find_packages
 from setuptools import setup
 
-version = '1.0.1'
+version = '1.0.2'
 
 # Please update tox.ini when modifying dependency version requirements
 install_requires = [
@@ -17,7 +17,7 @@ install_requires = [
 
 if not os.environ.get('SNAP_BUILD'):
     install_requires.extend([
-        'acme>=0.31.0',
+        'acme>=1.8.0',
         'certbot>=1.1.0',
         'zope.interface',
     ])

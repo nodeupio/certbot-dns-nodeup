@@ -12,7 +12,7 @@ customers to prove control of a domain name.
 3. Create a `nodeup.ini` config file with the following contents and apply `chmod 600 nodeup.ini` on it:
    ```
    # Nodeup API credentials used by Certbot
-   api_key = TOKEN
+   api_token = TOKEN
  
    ```
    Replace `TOKEN` with your Nodeup API token and ensure permissions are set
