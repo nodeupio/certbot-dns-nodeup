@@ -23,4 +23,8 @@ customers to prove control of a domain name.
    ```
    certbot certonly -a dns-nodeup --dns-nodeup-credentials nodeup.ini -d example.com
    ```
-   Add additional options as required to specify an installation plugin etc.
+
+   Wildcard
+   ```
+   certbot certonly -a dns-nodeup --dns-nodeup-credentials nodeup.ini -d \*.example.com
+   ```
