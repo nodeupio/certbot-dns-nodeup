@@ -1,4 +1,4 @@
-# Certbot plugin for authentication using Nodeup API
+# Certbot plugin for authentication using Gandi LiveDNS
 
 This is a plugin for [Certbot](https://certbot.eff.org/) that uses the Nodeup API to allow [Nodeup](https://nodeup.io/)
 customers to prove control of a domain name.
@@ -10,6 +10,9 @@ customers to prove control of a domain name.
 2. Install the plugin using `pip install certbot-dns-nodeup`
 
 3. Create a `nodeup.ini` config file with the following contents and apply `chmod 600 nodeup.ini` on it:
+   ```
+   # Nodeup API credentials used by Certbot
+   api_key = TOKEN
  
    ```
    Replace `TOKEN` with your Nodeup API token and ensure permissions are set
