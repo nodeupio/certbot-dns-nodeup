@@ -1,11 +1,11 @@
-# Certbot plugin for authentication using Gandi LiveDNS
+# Certbot plugin for authentication using Nodeup LiveDNS
 
 This is a plugin for [Certbot](https://certbot.eff.org/) that uses the Nodeup API to allow [Nodeup](https://nodeup.io/)
 customers to prove control of a domain name.
 
 ## Usage
 
-1. Obtain a NodeUp API token (see [Nodeup API](https://cloud.nodeup.io/settings/api/))
+1. Obtain a NodeUp API token (see [Nodeup API Settings](https://cloud.nodeup.io/settings/api/))
 
 2. Install the plugin using `pip install certbot-dns-nodeup`
 
