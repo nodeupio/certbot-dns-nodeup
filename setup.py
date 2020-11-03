@@ -11,7 +11,7 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-version = '1.0.7'
+version = '1.0.8'
 
 # Please update tox.ini when modifying dependency version requirements
 install_requires = [
@@ -55,7 +55,7 @@ setup(
     author_email='client-dev@letsencrypt.org',
     license='Apache License 2.0',
     long_description=long_description,
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
