@@ -85,7 +85,10 @@ class NodeupDNSClient:
             }
             ''')
         res = json.loads(query)
-        return res['data']['domain']['id']
+        if 'errors' in res:
+            self.returnErrors(res['errors'])
+        else:    
+            return res['data']['domain']['id']
 
     def addDnsRecord(self, letsencrypt_txt_value):
         record = {
@@ -123,9 +126,12 @@ class NodeupDNSClient:
             ''', json.dumps(record))
 
         res = json.loads(res_json)
-        print("Nodeup response: " + repr(res))   
-        self.dns_record_id = res['data']['createDnsRecord']['id']
-        return res
+        if 'errors' in res:
+            self.returnErrors(res['errors'])
+        else:    
+            print("Nodeup response: " + repr(res))   
+            self.dns_record_id = res['data']['createDnsRecord']['id']
+            return res
 
     def delDnsRecord(self):
         c = self.client()
@@ -138,5 +144,14 @@ class NodeupDNSClient:
             }
             ''', json.dumps({'id': self.dns_record_id}))
         res = json.loads(res_json)
-        print("Nodeup response: " + repr(res))
-        return res
+        if 'errors' in res:
+            self.returnErrors(res['errors'])
+        else:
+            print("Nodeup response: " + repr(res))
+            return res
+    
+    def returnErrors(self, errors):
+        for error in errors:
+            print("Nodeup.io error!")
+            print(error['message'])
+            exit()
