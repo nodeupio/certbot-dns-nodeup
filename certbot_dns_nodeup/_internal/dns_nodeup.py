@@ -103,7 +103,7 @@ class NodeupDNSClient:
         c = self.client()
         res_json = c.execute('''
             mutation createDomainDnsRecord($dnsRecord: CreateDomainDnsRecordInput!) {
-                createDomainDnsRecord(dnsRecord: $dnsRecord) {
+                createDomainDnsRecord(domainDnsRecord: $domainDnsRecord) {
                     id
                     name
                     type

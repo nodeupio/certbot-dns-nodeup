@@ -11,7 +11,7 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-version = '1.1.3'
+version = '1.1.4'
 
 # Please update tox.ini when modifying dependency version requirements
 install_requires = [
