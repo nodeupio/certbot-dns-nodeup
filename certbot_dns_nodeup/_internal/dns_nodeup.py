@@ -69,9 +69,6 @@ class NodeupDNSClient:
               domain(name: "'''+ self.basedomain_name +'''") {
                 id
                 name
-                created
-                updated
-                expires
                 dnsRecords {
                   id
                   name
@@ -115,9 +112,6 @@ class NodeupDNSClient:
                     domain {
                         id
                         name
-                        created
-                        updated
-                        expires
                         __typename
                     }
                     __typename
