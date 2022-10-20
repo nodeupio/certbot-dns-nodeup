@@ -92,7 +92,7 @@ class NodeupDNSClient:
             'domainDnsRecord': {
                 'name': '_acme-challenge' + ".%s" % self.subdomain_name if self.subdomain_name else '_acme-challenge', 
                 'type': 'TXT', 
-                'data': '"'+ letsencrypt_txt_value +'"', 
+                'data': f'"{letsencrypt_txt_value}"', 
                 'ttl': 3600, 
                 'domain': {
                   'id': self.getDomainID()
@@ -117,7 +117,7 @@ class NodeupDNSClient:
                     __typename
                 }
             }
-            ''', json.dumps(record))
+            ''', record)
 
         res = json.loads(res_json)
         if 'errors' in res:
@@ -136,7 +136,7 @@ class NodeupDNSClient:
                     __typename
                 }
             }
-            ''', json.dumps({'id': self.dns_record_id}))
+            ''', {'id': self.dns_record_id})
         res = json.loads(res_json)
         if 'errors' in res:
             self.returnErrors(res['errors'])
