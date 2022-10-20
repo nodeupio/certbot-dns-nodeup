@@ -105,8 +105,8 @@ class NodeupDNSClient:
 
         c = self.client()
         res_json = c.execute('''
-            mutation CreateDnsRecord($dnsRecord: CreateDnsRecordInput!) {
-                createDnsRecord(dnsRecord: $dnsRecord) {
+            mutation CreateDomainDnsRecord($dnsRecord: CreateDomainDnsRecordInput!) {
+                CreateDomainDnsRecord(dnsRecord: $dnsRecord) {
                     id
                     name
                     type
@@ -130,14 +130,14 @@ class NodeupDNSClient:
             self.returnErrors(res['errors'])
         else:    
             print("Nodeup response: " + repr(res))   
-            self.dns_record_id = res['data']['createDnsRecord']['id']
+            self.dns_record_id = res['data']['createDomainDnsRecord']['id']
             return res
 
     def delDnsRecord(self):
         c = self.client()
         res_json = c.execute('''
-            mutation deleteDnsRecord($id: Int!) {
-                deleteDnsRecord(id: $id) {
+            mutation deleteDomainDnsRecord($id: Int!) {
+                deleteDomainDnsRecord(id: $id) {
                     name
                     __typename
                 }
