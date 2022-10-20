@@ -89,7 +89,7 @@ class NodeupDNSClient:
 
     def addDnsRecord(self, letsencrypt_txt_value):
         record = {
-            'dnsRecord': {
+            'domainDnsRecord': {
                 'name': '_acme-challenge' + ".%s" % self.subdomain_name if self.subdomain_name else '_acme-challenge', 
                 'type': 'TXT', 
                 'data': '"'+ letsencrypt_txt_value +'"', 
