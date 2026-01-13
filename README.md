@@ -7,7 +7,7 @@ customers to prove control of a domain name.
 
 1. Obtain a NodeUp API token (see [Nodeup API Settings](https://cloud.nodeup.io/settings/api/))
 
-2. Install the plugin using `pip install certbot-dns-nodeup`
+2. Install the plugin using `pip install --break-system-packages certbot-dns-nodeup`
 
 3. Create a `nodeup.ini` config file with the following contents and apply `chmod 600 nodeup.ini` on it:
    ```

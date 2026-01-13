@@ -20,7 +20,7 @@ class Authenticator(dns_common.DNSAuthenticator):
     def __init__(self, *args, **kwargs):
         super(Authenticator, self).__init__(*args, **kwargs)
         self.credentials = None
-        self.nodeup_dns_client = None # cached DNS client instance
+        self.nodeup_dns_clients = {} # store DNS client instances by domain
 
     @classmethod
     def add_parser_arguments(cls, add):  # pylint: disable=arguments-differ
@@ -35,13 +35,15 @@ class Authenticator(dns_common.DNSAuthenticator):
 
     def _perform(self, domain, validation_name, letsencrypt_txt_value):
         print('Nodeup: adding temporary TXT record for '+ repr((domain, letsencrypt_txt_value)))
-        self.nodeup_dns_client = NodeupDNSClient(domain, nodeup_api_token=self.credentials.conf('api_token'))
-        self.nodeup_dns_client.addDnsRecord(letsencrypt_txt_value)
+        client = NodeupDNSClient(domain, nodeup_api_token=self.credentials.conf('api_token'))
+        client.addDnsRecord(letsencrypt_txt_value)
+        self.nodeup_dns_clients[domain] = client
 
     def _cleanup(self, domain, validation_name, letsencrypt_txt_value):
-        if self.nodeup_dns_client:
+        if domain in self.nodeup_dns_clients:
             print('Nodeup: removing temporary TXT record for '+ repr((domain, letsencrypt_txt_value)))
-            self.nodeup_dns_client.delDnsRecord()
+            self.nodeup_dns_clients[domain].delDnsRecord()
+
 
 
 class NodeupDNSClient:
