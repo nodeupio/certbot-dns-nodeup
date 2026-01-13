@@ -95,7 +95,7 @@ class NodeupDNSClient:
                 'name': '_acme-challenge' + ".%s" % self.subdomain_name if self.subdomain_name else '_acme-challenge', 
                 'type': 'TXT', 
                 'data': f'"{letsencrypt_txt_value}"', 
-                'ttl': 3600, 
+                'ttl': 30, 
                 'domain': {
                   'id': self.getDomainID()
                 }
